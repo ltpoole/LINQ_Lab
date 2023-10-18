@@ -18,9 +18,9 @@ namespace LINQLab
         public void RunLINQQueries()
         {
             //// <><><><><><><><> R Actions (Read) <><><><><><><><><>
-            RDemoOne();
+            //RDemoOne();
             //RProblemOne();
-            //RDemoTwo();
+            RDemoTwo();
             //RProblemTwo();
             //RProblemThree();
             //RProblemFour();
@@ -68,6 +68,12 @@ namespace LINQLab
         private void RProblemOne()
         {
             // Print the COUNT of all the users from the User table.
+            var users = _context.Users.ToList();
+
+            var count = users.Count();
+
+            Console.WriteLine(users.Count);
+
 
         }
 
