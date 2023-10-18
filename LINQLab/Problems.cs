@@ -20,9 +20,9 @@ namespace LINQLab
             //// <><><><><><><><> R Actions (Read) <><><><><><><><><>
             //RDemoOne();
             //RProblemOne();
-            RDemoTwo();
-            RProblemTwo();
-            //RProblemThree();
+            //RDemoTwo();
+            //RProblemTwo();
+            RProblemThree();
             //RProblemFour();
             //RProblemFive();
 
@@ -121,6 +121,12 @@ namespace LINQLab
         public void RProblemThree()
         {
             // Write a LINQ query that gets each product whose name that CONTAINS an "s".
+            var productsWithS = _context.Products.Where(p => p.Name.Contains("s"));
+
+            foreach (Product product in productsWithS)
+            {
+                Console.WriteLine($"{product.Name}");
+            }
         }
         /*
             Expected Result:
