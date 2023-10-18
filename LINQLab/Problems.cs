@@ -22,8 +22,8 @@ namespace LINQLab
             //RProblemOne();
             //RDemoTwo();
             //RProblemTwo();
-            RProblemThree();
-            //RProblemFour();
+            //RProblemThree();
+            RProblemFour();
             //RProblemFive();
 
             //// <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
@@ -146,6 +146,13 @@ namespace LINQLab
         {
             // Write a LINQ query that gets all the users who registered BEFORE 2016.
             // Then print each user's email and registration date to the console.
+            var usersBefore2016 = _context.Users.Where(users => users.RegistrationDate < new DateTime(2016, 1, 1));
+            foreach (var user in usersBefore2016)
+            {
+                Console.WriteLine("Email:" + $"{user.Email}" + "\n" + "Registration Date:" + "" + $"{user.RegistrationDate}");
+
+            }
+
 
         }
         /*
