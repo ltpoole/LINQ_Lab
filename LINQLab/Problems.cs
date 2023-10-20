@@ -149,7 +149,7 @@ namespace LINQLab
             var usersBefore2016 = _context.Users.Where(users => users.RegistrationDate < new DateTime(2016, 1, 1));
             foreach (var user in usersBefore2016)
             {
-                Console.WriteLine("Email: " + $"{user.Email}" + "\n" + "Registration Date: " + $"{user.RegistrationDate}");
+                Console.WriteLine($"Email: {user.Email}" + "\n" + $"Registration Date: {user.RegistrationDate}");
 
             }
 
@@ -173,8 +173,8 @@ namespace LINQLab
 
             foreach (var user in usersBetween2016And2018)
             {
-                Console.WriteLine("Email: " + $"{user.Email}");
-                Console.WriteLine("Registration Date: " + $"{user.RegistrationDate}");
+                Console.WriteLine($"Email: {user.Email}");
+                Console.WriteLine($"Registration Date: {user.RegistrationDate}");
 
             }
         }
