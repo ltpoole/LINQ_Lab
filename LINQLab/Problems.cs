@@ -27,8 +27,8 @@ namespace LINQLab
             //RProblemFive();
 
             //// <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
-            RDemoThree();
-            //RProblemSix();
+            //RDemoThree();
+            RProblemSix();
             //RProblemSeven();
             //RProblemEight();
 
@@ -201,8 +201,14 @@ namespace LINQLab
         {
             // Write a LINQ query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
             // Then print the product's name, price, and quantity to the console.
-
-
+            var userProducts = _context.ShoppingCartItems.Include(ur => ur.Product).Include(ur => ur.User).Where(ur => ur.User.Email == "afton@gmail.com");
+            Console.WriteLine("Expected Result: ");
+            foreach (ShoppingCartItem shoppingcartitem in userProducts)
+            {
+                Console.WriteLine($"Name: {shoppingcartitem.Product.Name}");
+                Console.WriteLine($"Price: {shoppingcartitem.Product.Price}");
+                Console.WriteLine($"Quantity: {shoppingcartitem.Quantity}");
+            }
         }
         /*
             Expected Result:
