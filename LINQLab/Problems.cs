@@ -28,14 +28,14 @@ namespace LINQLab
 
             //// <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
             //RDemoThree();
-            RProblemSix();
+            //RProblemSix();
             //RProblemSeven();
             //RProblemEight();
 
             //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
             //// <><> C Actions (Create) <><>
-            //CDemoOne();
+            CDemoOne();
             //CProblemOne();
             //CDemoTwo();
             //CProblemTwo();
@@ -190,7 +190,8 @@ namespace LINQLab
         private void RDemoThree()
         {
             // This LINQ query will retreive all of the users who are assigned to the role of Customer.
-            var customerUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Customer");
+            var customerUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User)
+                .Where(ur => ur.Role.RoleName == "Customer");
             Console.WriteLine("RDemoThree: Customer Users");
             foreach (UserRole userrole in customerUsers)
             {
@@ -201,8 +202,8 @@ namespace LINQLab
         {
             // Write a LINQ query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
             // Then print the product's name, price, and quantity to the console.
-            var userProducts = _context.ShoppingCartItems.Include(ur => ur.Product).Include(ur => ur.User).Where(ur => ur.User.Email == "afton@gmail.com");
-            Console.WriteLine("Expected Result: ");
+            var userProducts = _context.ShoppingCartItems.Include(ur => ur.Product).Include(ur => ur.User)
+                .Where(ur => ur.User.Email == "afton@gmail.com");
             foreach (ShoppingCartItem shoppingcartitem in userProducts)
             {
                 Console.WriteLine($"Name: {shoppingcartitem.Product.Name}");
@@ -231,12 +232,19 @@ namespace LINQLab
 
         public void RProblemSeven()
         {
-            // Write a LINQ query that retrieves all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
+            // Write a LINQ query that retrieves all of the products in the shopping cart of the user who has the email
+            // "oda@gmail.com" and returns the sum of all of the products prices.
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Print the total of the shopping cart to the console.
             // Remember to break the problem down and take it one step at a time!
-
-
+            var odaProducts = _context.ShoppingCartItems.Include(sc => sc.Product).Include(sc => sc.User)
+                  .Where(sc => sc.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
+            
+            {
+                Console.WriteLine("Total: ");
+            
+              
+            }
         }
         /*
          Total: $715.34
@@ -245,8 +253,15 @@ namespace LINQLab
         public void RProblemEight()
         {
             // Write a query that retrieves all of the products in the shopping cart of users who have the role of "Employee".
-            // Then print the product's name, price, and quantity to the console along with the email of the user that has it in their cart.
-
+            // Then print the product's name, price, and quantity to the console along with the email of the user
+            // that has it in their cart.
+            
+            //foreach (UserRole userRole in employeeProducts)
+            //{
+            //    Console.WriteLine($"User's email: {userRole.User.Email}");
+            //    Console.WriteLine("------------");
+            //    Console.WriteLine($"Product name: ");
+            //}
         }
         /*
             Expected Result
