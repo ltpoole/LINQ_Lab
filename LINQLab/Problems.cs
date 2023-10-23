@@ -35,8 +35,8 @@ namespace LINQLab
             //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
             //// <><> C Actions (Create) <><>
-            CDemoOne();
-            //CProblemOne();
+            //CDemoOne();
+            CProblemOne();
             //CDemoTwo();
             //CProblemTwo();
 
@@ -310,8 +310,14 @@ namespace LINQLab
         private void CProblemOne()
         {
             // Create a new Product object and add that product to the Products table. Choose any name and product info you like.
-
-
+            Product newProduct = new Product()
+            {
+                Name = "PlayStation 5 Console",
+                Description = "The PS5 console unleashes new gaming possibilities that you never anticipated.",
+                Price = 499.00m
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
         }
 
         public void CDemoTwo()
