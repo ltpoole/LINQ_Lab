@@ -36,8 +36,8 @@ namespace LINQLab
 
             //// <><> C Actions (Create) <><>
             //CDemoOne();
-            CProblemOne();
-            //CDemoTwo();
+            //CProblemOne();
+            CDemoTwo();
             //CProblemTwo();
 
             //// <><> U Actions (Update) <><>
@@ -322,7 +322,8 @@ namespace LINQLab
 
         public void CDemoTwo()
         {
-            // This will add the role of "Customer" to the user we created in CDemoOne by adding a new row to the Userroles junction table.
+            // This will add the role of "Customer" to the user we created in CDemoOne by adding a new row to
+            // the Userroles junction table.
             var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
             var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
             UserRole newUserrole = new UserRole()
@@ -337,7 +338,8 @@ namespace LINQLab
 
         public void CProblemTwo()
         {
-            // Create a new ShoppingCartItem to represent the new product you created in CProblemOne being added to the shopping cart of the user created in CDemoOne.
+            // Create a new ShoppingCartItem to represent the new product you created in CProblemOne being added
+            // to the shopping cart of the user created in CDemoOne.
             // This will add a new row to ShoppingCart junction table.
 
 
