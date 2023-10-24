@@ -38,11 +38,11 @@ namespace LINQLab
             //CDemoOne();
             //CProblemOne();
             //CDemoTwo();
-            CProblemTwo();
+            //CProblemTwo();
 
             //// <><> U Actions (Update) <><>
             //UDemoOne();
-            //UProblemOne();
+            UProblemOne();
             //UProblemTwo();
 
             //// <><> D Actions (Delete) <><>
@@ -371,7 +371,10 @@ namespace LINQLab
         private void UProblemOne()
         {
             // Update the price of the product you created in CProblemOne to something different using LINQ.
-
+            var product = _context.Products.Where(p => p.Price == 499.00m).SingleOrDefault();
+            product.Price = 599.00m;
+            _context.Products.Update(product);
+            _context.SaveChanges();
 
         }
 
