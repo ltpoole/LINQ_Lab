@@ -30,7 +30,7 @@ namespace LINQLab
             //RDemoThree();
             //RProblemSix();
             //RProblemSeven();
-            //RProblemEight();
+            RProblemEight();
 
             //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
@@ -43,7 +43,7 @@ namespace LINQLab
             //// <><> U Actions (Update) <><>
             //UDemoOne();
             //UProblemOne();
-            UProblemTwo();
+            //UProblemTwo();
 
             //// <><> D Actions (Delete) <><>
             //DDemoOne();
@@ -239,7 +239,7 @@ namespace LINQLab
             // Remember to break the problem down and take it one step at a time!
             var odaProducts = _context.ShoppingCartItems.Include(sc => sc.Product).Include(sc => sc.User)
                   .Where(sc => sc.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
-            
+           
             {
                 Console.WriteLine("Total: ");
             
@@ -255,13 +255,18 @@ namespace LINQLab
             // Write a query that retrieves all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the product's name, price, and quantity to the console along with the email of the user
             // that has it in their cart.
-            
-            //foreach (UserRole userRole in employeeProducts)
-            //{
-            //    Console.WriteLine($"User's email: {userRole.User.Email}");
-            //    Console.WriteLine("------------");
-            //    Console.WriteLine($"Product name: ");
-            //}
+            var employeeItems = _context.ShoppingCartItems.Include(sc => sc.Product).Include(sc => sc.User)
+                .Where(sc => sc.User.UserRoles.Select(ur => ur.RoleId).Equals(2));
+
+            foreach (ShoppingCartItem shoppingcartitem in employeeItems)
+            {
+                Console.WriteLine($"User's email: {shoppingcartitem.User.Email}");
+                
+                Console.WriteLine($"Product name: {shoppingcartitem.Product.Name}");
+                Console.WriteLine($"Price: {shoppingcartitem.Product.Price}");
+                Console.WriteLine($"Quantity: {shoppingcartitem.Quantity}");
+            }
+             
         }
         /*
             Expected Result
